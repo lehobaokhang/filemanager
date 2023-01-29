@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.miroslav.filemanager.service.UserService;
 
@@ -38,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/").hasAnyRole("USER", "ADMIN")
 			.antMatchers("/css/**", "/icons/**", "/images/**", "/js/**", "/pages/**", "/plugins/**").permitAll()
 			.antMatchers("/register", "/test").permitAll()
 			.anyRequest().authenticated()
@@ -46,11 +46,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 				.loginPage("/login")
 					.loginProcessingUrl("/authenticate")
-						.usernameParameter("email")
+					.defaultSuccessUrl("/")
+						.usernameParameter("username")
 						.passwordParameter("password")
 						.permitAll()
 			.and()
 			.logout()
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.invalidateHttpSession(true)
 			.clearAuthentication(true)
 			.permitAll()

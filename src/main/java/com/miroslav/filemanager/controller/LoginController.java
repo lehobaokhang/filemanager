@@ -15,9 +15,4 @@ public class LoginController {
 	public String showLoginForm() {
 		return "login";
 	}
-	
-	@GetMapping("/test")
-	public void test() {
-		emailSenderService.sendVerifyMail("data.miroslavkhang@gmail.com", "test", "test");
-	}
 }

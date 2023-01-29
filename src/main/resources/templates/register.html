@@ -18,6 +18,9 @@
         <link th:href="@{/css/icons.css}" rel="stylesheet">
         <link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css">
         <link th:href="@{/css/style.css}" rel="stylesheet">
+        
+        <!--notifications-->
+        <link th:href="@{/plugins/notifications/notification.css}" rel="stylesheet" />
     </head>
 
     <body class="sticky-header">
@@ -88,8 +91,22 @@
         <script th:src="@{/js/jquery.slimscroll.min.js}"></script>
         <script th:src="@{/js/slidebars.min.js}"></script>
         
+        <!--Notifications-->
+        <script th:src="@{/plugins/notifications/notify.min.js}"></script>
+        <script th:src="@{/plugins/notifications/notify-metro.js}"></script>
+        <script th:src="@{/plugins/notifications/notifications.js}"></script>    
 
         <!--app js-->
         <script th:src="@{/js/jquery.app.js}"></script>
+        
+        <script th:if="${message}" th:inline="javascript">
+        	var message = /*[[${message}]]*/ "default";
+        	$.Notification.autoHideNotify(
+        		"error",
+        		"top right",
+        		"Error",
+        		message
+        	);
+        </script>
     </body>
 </html>

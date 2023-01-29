@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.miroslav.filemanager.config.CustomUserDetails;
 import com.miroslav.filemanager.entity.AuthUser;
 import com.miroslav.filemanager.repository.AuthUserRepository;
 
@@ -19,8 +20,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		AuthUser user = authUserRepository.findByEmail(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("User not found");
+		}
+		return new CustomUserDetails(user);
 	}
 
 	@Override
