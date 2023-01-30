@@ -111,5 +111,14 @@
         		message
         	);
         </script>
+        
+        <script th:if="${param.logout != null}" th:inline="javascript">
+        $.Notification.autoHideNotify(
+        		"success",
+        		"top right",
+        		"Success",
+        		"Logout Success"
+        	);
+        </script>
     </body>
 </html>

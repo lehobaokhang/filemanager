@@ -22,6 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private LoginSuccessHandler loginSuccessHandler; 
+	
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -46,7 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 				.loginPage("/login")
 					.loginProcessingUrl("/authenticate")
-					.defaultSuccessUrl("/")
+//					.defaultSuccessUrl("/")
+					.successHandler(loginSuccessHandler)
 						.usernameParameter("username")
 						.passwordParameter("password")
 						.permitAll()

@@ -38,15 +38,11 @@ public class RegsiterController {
 		if (userService.checkEmailExists(authUser.getEmail())) {
 			userService.register(authUser);
 			
-			Token token = new Token();
-			token.setToken(UUID.randomUUID().toString());
-			token.setUser(authUser.getId());
-			token.setAction("verify-email");
-			tokenService.save(token);			
+			Token theToken = tokenService.save(authUser.getId(), "verify-mail");
 			
 			String subject = "Verify Your Email";
 			
-			emailSenderService.sendVerifyMail(authUser.getEmail(), subject, token.getToken());
+			emailSenderService.sendVerifyMail(authUser.getEmail(), subject, theToken.getToken());
 			
 			redirectAttributes.addFlashAttribute("message", "Please check your email");
 			return "redirect:/login";
