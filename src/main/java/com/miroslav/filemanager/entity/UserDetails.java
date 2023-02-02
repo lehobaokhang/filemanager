@@ -31,14 +31,18 @@ public class UserDetails {
 	
 	@Column(name = "address")
 	private String address;
+	
+	@Column(name = "account_status")
+	private String accountStatus;
 
-	public UserDetails(String avatar, int gender, Date dob, String phone, String address) {
+	public UserDetails(String avatar, int gender, Date dob, String phone, String address, String accountStatus) {
 		super();
 		this.avatar = avatar;
 		this.gender = gender;
 		this.dob = dob;
 		this.phone = phone;
 		this.address = address;
+		this.accountStatus = accountStatus;
 	}
 
 	public UserDetails() {
@@ -91,6 +95,14 @@ public class UserDetails {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(String accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 
 	@Override
