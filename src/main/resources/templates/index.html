@@ -12,13 +12,15 @@
         <!-- Theme icon -->
         <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
 
-        <link th:href="@{/plugins/morris-chart/morris.css}" rel="stylesheet">
         <!-- Theme Css -->
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
         <link th:href="@{/css/slidebars.min.css}" rel="stylesheet">
         <link th:href="@{/css/icons.css}" rel="stylesheet">
         <link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css">
         <link th:href="@{/css/style.css}" rel="stylesheet">
+        
+		<!--notifications-->
+        <link th:href="@{/plugins/notifications/notification.css}" rel="stylesheet" />
     </head>
 
     <body class="sticky-header">
@@ -123,7 +125,12 @@
         <script th:src="@{/plugins/morris-chart/raphael-min.js}"></script>
         <script th:src="@{/plugins/morris-chart/morris.js}"></script>
         <script th:src="@{/pages/dashboard-init.js}"></script>
-
+		
+		<!--Notifications-->
+        <script th:src="@{/plugins/notifications/notify.min.js}"></script>
+        <script th:src="@{/plugins/notifications/notify-metro.js}"></script>
+        <script th:src="@{/plugins/notifications/notifications.js}"></script>
+        
         <!--app js-->
         <script th:src="@{/js/jquery.app.js}"></script>
         <script>

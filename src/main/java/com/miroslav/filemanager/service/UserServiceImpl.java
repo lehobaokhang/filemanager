@@ -21,9 +21,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		AuthUser user = authUserRepository.findByEmail(username);
-		if (user == null) {
-			throw new UsernameNotFoundException("User not found");
-		}
+//		if (user == null) {
+//			throw new UsernameNotFoundException("User not found");
+//		}
 		return new CustomUserDetails(user);
 	}
 
@@ -40,5 +40,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkEmailExists(String email) {
 		return (authUserRepository.findByEmail(email) == null) ? true : false;
+	}
+
+	@Override
+	public void verifyUser(int id) {
+		AuthUser authUser = authUserRepository.getById(id);
+		authUser.setStatus("VERIFIED");
+		authUserRepository.save(authUser);
+	}
+
+	@Override
+	public void resetPassword(int userId, String newPwd) {
+		AuthUser authUser = authUserRepository.getById(userId);
+		String encodePassword = passwordEncoder.encode(newPwd);
+		authUser.setPassword(encodePassword);
+				
+		authUserRepository.save(authUser);
 	}
 }
