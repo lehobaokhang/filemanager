@@ -18,12 +18,12 @@ public class FolderServiceImpl implements FolderService {
 	private FolderRepository folderRepository;
 	
 	@Override
-	public void addFolder(int author, String folderName) {
+	public void addFolder(int author, String folderName, String parentFolder) {
 		Folder folder = new Folder();
 		
 		folder.setId(UUID.randomUUID().toString());
 		folder.setFolderName(folderName);
-		folder.setParentFolder("/");
+		folder.setParentFolder(parentFolder);
 		folder.setAuthor(author);
 		Instant expired_at = Instant.now();
 		folder.setCreated_at(Timestamp.from(expired_at));
@@ -32,8 +32,8 @@ public class FolderServiceImpl implements FolderService {
 	}
 
 	@Override
-	public List<Folder> loadAllFolder(int author) {
-		return folderRepository.findAll();
+	public List<Folder> loadAllFolderByParentFolder(int author, String parentFolder) {
+		return folderRepository.findByParentFolder(parentFolder);
 	}
 	
 	

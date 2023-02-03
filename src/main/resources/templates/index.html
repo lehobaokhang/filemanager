@@ -41,25 +41,45 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-3 m-b-30" th:each="folder : ${folders}">
-									<a th:href="@{/folder/} + ${folder.id}">
-										<div class="widget-box i-bg-grad bg-white">
-			                                <div class="row d-flex align-items-center">
-			                                    <div class="col-4">
-			                                        <i class="ti ti-wallet"></i>
-			                                    </div>
-			                                    <div class="col-4">
-			                                        <p class="m-0" th:text="${folder.folderName}"></p> 
-			                                    </div>
-			                                </div>
-										</div>
-									</a>
-		                        </div>
-                            </div>
-                            
-                        </div>
+	                        <div class="card m-b-30">
+	                            <div class="card-body">
+	                                <h5 class="header-title">Example</h5>
+	                                <p class="text-muted">This is an experimental awesome solution for responsive tables with complex data.</p>
+	                                <div class="table-rep-plugin">
+	                                    <div class="table-responsive" data-pattern="priority-columns">
+	                                        <table id="tech-companies-1" class="table table-striped">
+	                                            <thead>
+	                                            <tr>
+	                                                <th>Name</th>
+	                                                <th style="width:10%">Type</th>
+	                                                <th style="width:15%">Last Modified</th>
+	                                                <th style="width:10%">Size</th>
+	                                                <th style="width:25%">Action</th>
+	                                            </tr>
+	                                            </thead>
+	                                            <tbody>
+	                                            <tr th:each="folder : ${folders}">
+	                                                <th><a th:text="${folder.folderName}" th:href="@{/folder/} + ${folder.id}"></a></th>
+	                                                <td>Folder</td>
+	                                                <td th:text="${folder.created_at}"></td>
+	                                                <td></td>
+	                                                <td>
+				                                        <button type="button" class="btn btn-secondary"><i class="fa fa-pencil"></i></button>
+	                                                	<button type="button" class="btn btn-primary"><i class="fa fa-arrow-right"></i></button>
+				                                        <button type="button" class="btn btn-success"><i class="fa fa-mail-forward"></i></button>
+				                                        <button type="button" class="btn btn-warning"><i class="fa fa-star"></i></button>
+				                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+	                                                </td>
+	                                            </tr>
+	                                            </tbody>
+	                                        </table>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>                        
                     </div><!--end row-->
+                    <hr>
                     <div class="page-head" data-toggle="modal" data-target=".bd-example-modal-lg-file">
                         <h4 class="mt-2 mb-2">File <i class="mdi mdi-file"></i></h4>
                     </div>
@@ -100,7 +120,7 @@
 	                            </div>
 	                        </div>
 	                    </div>                        
-                    </div>                            
+                    </div>
                     
                 </div><!--end container-->
 

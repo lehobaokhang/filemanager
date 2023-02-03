@@ -21,7 +21,7 @@ public class HomeController {
 	public String showIndex(Model model, Authentication authentication) {
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 		
-		List<Folder> allFolder = folderService.loadAllFolder(userDetails.getUser().getId());
+		List<Folder> allFolder = folderService.loadAllFolderByParentFolder(userDetails.getUser().getId(), "/");
 		
 		model.addAttribute("folders", allFolder);
 		model.addAttribute("parentFolder", "/");
