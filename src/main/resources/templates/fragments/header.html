@@ -2,7 +2,7 @@
 	<div class="header-section">
 	<!--logo and logo icon start-->
 	<div class="logo">
-	    <a href="index.html">
+	    <a th:href="@{/}">
 	        <span class="logo-img">
 	            <img th:src="@{/images/logo_sm.png}" alt="" height="26">
 	        </span>
@@ -163,7 +163,7 @@
 	
 	            <li>
 	                <a href="javascript:;" data-toggle="dropdown">
-	                    <img th:src="@{/images/users/avatar-1.jpg}" alt="">
+	                    <img th:src="@{${#authentication.getPrincipal().getUser().getUserDetails.getAvatar()}}" alt="">
 	                </a>
 	                <div class="dropdown-menu dropdown-menu-right profile-menu">
 	                    <a class="dropdown-item" th:href="@{/profile}"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>

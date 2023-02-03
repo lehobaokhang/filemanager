@@ -2,7 +2,7 @@
 	<div class="sidebar-left-info">
 	    <div class="user-box">
 	        <div class="d-flex justify-content-center">
-	            <img th:src="@{/images/users/avatar-1.jpg}" alt="" class="img-fluid rounded-circle"> 
+	            <img th:src="@{${#authentication.getPrincipal().getUser().getUserDetails.getAvatar()}}" alt="" class="img-fluid rounded-circle"> 
 	        </div>
 	        <div class="text-center text-white mt-2">
 	            <h6 th:text="${#authentication.getPrincipal().getFullName()}"></h6>
@@ -16,7 +16,7 @@
 	            <h3 class="navigation-title">Navigation</h3>
 	        </li>
 	        <li class="active">
-	            <a href="#"><i class="mdi mdi-google-drive"></i> <span>My Drive</span></a>
+	            <a th:href="@{/}"><i class="mdi mdi-google-drive"></i> <span>My Drive</span></a>
 	        </li>
 	        <li>
 	            <a href="#"><i class="mdi mdi-share"></i> <span>Share with me</span></a>

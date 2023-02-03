@@ -34,29 +34,34 @@
                 <!-- header section end-->
 
                 <div class="container-fluid">
-                    <div class="page-head">
-                        <h4 class="mt-2 mb-2">Folder</h4>
+                    <div class="page-head" data-toggle="modal" data-target=".bd-example-modal-lg-folder">
+                        <h4 class="mt-2 mb-2">Folder
+                        <i class="mdi mdi-folder-plus"></i>
+                        </h4>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12">
                             <div class="row">
-                                <div class="col-lg-3 m-b-30">
-		                           <div class="widget-box i-bg-grad bg-white">
-		                                <div class="row d-flex align-items-center">
-		                                    <div class="col-4">
-		                                        <i class="ti ti-wallet"></i>
-		                                    </div>
-		                                    <div class="col-4">
-		                                        <p class="m-0">Folder A</p> 
-		                                    </div>
-		                                </div>
-		                           </div> 
+                                <div class="col-lg-3 m-b-30" th:each="folder : ${folders}">
+									<a th:href="@{/folder/} + ${folder.id}">
+										<div class="widget-box i-bg-grad bg-white">
+			                                <div class="row d-flex align-items-center">
+			                                    <div class="col-4">
+			                                        <i class="ti ti-wallet"></i>
+			                                    </div>
+			                                    <div class="col-4">
+			                                        <p class="m-0" th:text="${folder.folderName}"></p> 
+			                                    </div>
+			                                </div>
+										</div>
+									</a>
 		                        </div>
                             </div>
+                            
                         </div>
                     </div><!--end row-->
-                    <div class="page-head">
-                        <h4 class="mt-2 mb-2">File</h4>
+                    <div class="page-head" data-toggle="modal" data-target=".bd-example-modal-lg-file">
+                        <h4 class="mt-2 mb-2">File <i class="mdi mdi-file"></i></h4>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12">
@@ -104,6 +109,50 @@
                 <!--footer section end-->
             </div>
             <!--end body content-->
+            <div class="modal fade bd-example-modal-lg-folder" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                 	<form th:action="@{/add-folder}" method="post">
+	                    <div class="modal-content">
+	                        <div class="modal-header">
+	                            <h5 class="modal-title">Add Folder</h5>
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                                <span aria-hidden="true">&times;</span>
+	                            </button>
+	                        </div>
+	                        <div class="modal-body">
+	                        	<input type="hidden" name="parentFolder" th:value="${parentFolder}"/>
+	                        	<input name="foldername" required="required" class="form-control" id="example-search-input" type="text" placeholder="Folder name"/>
+	                        </div>
+	                        <div class="modal-footer">
+	                            <button type="submit" class="btn btn-primary">Confirm</button>
+	                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	                        </div>
+	                    </div>
+                     </form>
+                 </div>
+             </div>
+             
+             <div class="modal fade bd-example-modal-lg-file" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                 	<form>
+	                    <div class="modal-content">
+	                        <div class="modal-header">
+	                            <h5 class="modal-title">Add File</h5>
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                                <span aria-hidden="true">&times;</span>
+	                            </button>
+	                        </div>
+	                        <div class="modal-body">
+	                        	<input required="required" class="form-control" id="example-search-input" type="text" placeholder="File name"/>
+	                        </div>
+	                        <div class="modal-footer">
+	                            <button type="submit" class="btn btn-primary">Confirm</button>
+	                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	                        </div>
+	                    </div>
+                     </form>
+                 </div>
+             </div>
         </section>
 
         <!-- jQuery -->
